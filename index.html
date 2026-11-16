@@ -783,11 +783,14 @@
             window.addEventListener('resize', resizeCanvas);
             resizeCanvas();
 
-            setTimeout(() => {
+            const launchBurstLoop = () => {
                 if (window.triggerGlitterBurst) {
                     window.triggerGlitterBurst();
                 }
-            }, 300);
+            };
+
+            launchBurstLoop();
+            setInterval(launchBurstLoop, 2500);
 
             const colors = ['#ffffff', '#ffd1e3', '#f48fb1', '#e87a9f', '#f3b6a8'];
 
