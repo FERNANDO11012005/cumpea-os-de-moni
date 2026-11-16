@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Mi Cumpleaños - Monica Eulalia</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Tipografías manuscritas elegantes y serif/sans complementarias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Lora:ital,wght@0,500;0,700;1,600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tone.js para melodía suave opcional de cumpleaños -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <style>
+        :root {
+            --wine-dark: #880e3f;
+            --wine-deep: #6b0830;
+            --pink-pastel: #ffd6e7;
+            --pink-soft: #fff0f6;
+            --pink-glitter: #e87a9f;
+            --rose-gold: #d48c96;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background:
+                radial-gradient(circle at top, rgba(255,255,255,0.7), transparent 28%),
+                radial-gradient(circle at bottom left, rgba(255,214,231,0.8), transparent 30%),
+                linear-gradient(135deg, #fdf2f7 0%, #f7d6e8 30%, #f4a5c1 60%, #ee8da9 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 14px 8px 22px;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: rgba(136, 14, 63, 0.25);
+            color: #880e3f;
+        }
+
+        /* Tipografías personalizadas fieles a la tarjeta */
+        .font-script-title {
+            font-family: 'Great Vibes', cursive;
+            text-shadow: 
+                2px 2px 0px #ffffff,
+                -2px -2px 0px #ffffff,
+                2px -2px 0px #ffffff,
+                -2px 2px 0px #ffffff,
+                0px 4px 10px rgba(136, 14, 63, 0.25);
+        }
+
+        .font-script-name {
+            font-family: 'Great Vibes', cursive;
+            text-shadow: 
+                1.5px 1.5px 0px #ffffff,
+                -1.5px -1.5px 0px #ffffff,
+                1.5px -1.5px 0px #ffffff,
+                -1.5px 1.5px 0px #ffffff,
+                0px 3px 8px rgba(136, 14, 63, 0.2);
+        }
+
+        .font-serif-italic {
+            font-family: 'Lora', serif;
+            font-style: italic;
+        }
+
+        /* Fondo de la tarjeta estilo acuarela rosa y destellos */
+        .invitation-card {
+            background: 
+                radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 214, 231, 0.4) 35%, transparent 65%),
+                radial-gradient(circle at 85% 25%, rgba(255, 192, 217, 0.75) 0%, transparent 55%),
+                radial-gradient(circle at 20% 85%, rgba(248, 187, 208, 0.85) 0%, transparent 60%),
+                radial-gradient(circle at 85% 85%, rgba(255, 228, 238, 0.9) 0%, transparent 60%),
+                linear-gradient(165deg, #ffeef5 0%, #ffdceb 32%, #ffcfe0 62%, #ffe5f1 100%);
+            box-shadow: 0 25px 50px -12px rgba(136, 14, 63, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.75);
+            max-width: 390px;
+        }
+
+        .invitation-card::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1.8px solid rgba(136, 14, 63, 0.18);
+            border-radius: 22px;
+            pointer-events: none;
+        }
+
+        .special-note {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(136, 14, 63, 0.12);
+            border-radius: 18px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+        }
+
+        .event-block {
+            background: rgba(255,255,255,0.25);
+            border: 1px solid rgba(136,14,63,0.12);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+        }
+
+        .date-panel {
+            background: rgba(255,255,255,0.26);
+            border: 1px solid rgba(136, 14, 63, 0.1);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
+        }
+
+        /* Bordes con textura de purpurina/brillos simulada con CSS */
+        .glitter-border-top-left {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 180px;
+            height: 280px;
+            background-image: 
+                radial-gradient(#fff 1.2px, transparent 1.2px),
+                radial-gradient(#d85a82 1.8px, transparent 1.8px),
+                radial-gradient(#f48fb1 2.2px, transparent 2.2px),
+                radial-gradient(#a32a52 1.5px, transparent 1.5px);
+            background-size: 18px 18px, 24px 24px, 14px 14px, 29px 29px;
+            background-position: 0 0, 7px 11px, 3px 5px, 12px 4px;
+            mask-image: radial-gradient(ellipse at top left, black 25%, transparent 72%);
+            -webkit-mask-image: radial-gradient(ellipse at top left, black 25%, transparent 72%);
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        .glitter-border-bottom-right {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            width: 220px;
+            height: 260px;
+            background-image: 
+                radial-gradient(#fff 1.3px, transparent 1.3px),
+                radial-gradient(#d85a82 2px, transparent 2px),
+                radial-gradient(#f06292 2.4px, transparent 2.4px),
+                radial-gradient(#880e3f 1.4px, transparent 1.4px);
+            background-size: 16px 16px, 22px 22px, 13px 13px, 27px 27px;
+            background-position: 0 0, 8px 10px, 4px 6px, 11px 3px;
+            mask-image: radial-gradient(ellipse at bottom right, black 28%, transparent 74%);
+            -webkit-mask-image: radial-gradient(ellipse at bottom right, black 28%, transparent 74%);
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        /* Animaciones suaves */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-7px) rotate(1.5deg); }
+        }
+
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(-1.5deg); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.25; transform: scale(0.8) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        }
+
+        @keyframes pulseClick {
+            0%, 100% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(0.9) translate(-2px, -2px); }
+        }
+
+        .animate-float-balloon {
+            animation: floatSlow 5.5s ease-in-out infinite;
+        }
+
+        .animate-float-crown {
+            animation: floatReverse 4.5s ease-in-out infinite;
+        }
+
+        .sparkle-star {
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .animate-hand-click {
+            animation: pulseClick 1.6s ease-in-out infinite;
+        }
+
+        /* Estilo de vidrio rosado suave para bloques */
+        .location-pill {
+            background: rgba(244, 179, 202, 0.45);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+        }
+
+        .maps-btn {
+            background: linear-gradient(180deg, #ffffff 0%, #fff5f8 100%);
+            box-shadow: 0 4px 12px rgba(136, 14, 63, 0.18), inset 0 1px 0 #ffffff;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .maps-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(136, 14, 63, 0.28);
+        }
+
+        .maps-btn:active {
+            transform: translateY(0px);
+        }
+
+        .rsvp-btn {
+            background: linear-gradient(135deg, #9c144a 0%, #730933 100%);
+            box-shadow: 0 6px 18px rgba(136, 14, 63, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .rsvp-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+            box-shadow: 0 10px 22px rgba(136, 14, 63, 0.45);
+        }
+
+        @media (max-width: 420px) {
+            .invitation-card {
+                border-radius: 24px;
+                max-width: 100%;
+            }
+
+            .font-script-title {
+                letter-spacing: 0.02em;
+            }
+
+            .maps-btn,
+            .rsvp-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .location-pill {
+                padding-left: 0.8rem;
+                padding-right: 0.8rem;
+            }
+
+            #countdownGrid {
+                gap: 0.4rem;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center py-4 px-2 sm:py-8 sm:px-4">
+
+    <!-- Canvas de partículas/destellos mágicos flotantes en segundo plano -->
+    <canvas id="glitterCanvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+    <!-- Barra flotante superior para música y efecto festivo -->
+    <div class="w-full max-w-[460px] flex justify-between items-center mb-3 px-1 z-20">
+        <button id="musicToggleBtn" type="button" class="flex items-center gap-2 bg-white/85 hover:bg-white text-[#880e3f] text-xs font-semibold px-3.5 py-2 rounded-full shadow-md border border-pink-200 transition active:scale-95">
+            <span id="musicIcon" class="text-base">🎵</span>
+            <span id="musicLabel">Activar Melodía</span>
+        </button>
+
+        <button id="confettiBtn" type="button" class="flex items-center gap-1.5 bg-white/85 hover:bg-white text-[#880e3f] text-xs font-semibold px-3.5 py-2 rounded-full shadow-md border border-pink-200 transition active:scale-95">
+            <span>✨</span>
+            <span>Lanzar Brillos</span>
+        </button>
+    </div>
+
+    <!-- TARJETA PRINCIPAL DE INVITACIÓN (Diseño responsivo tipo tarjeta móvil) -->
+    <main class="invitation-card w-full max-w-[460px] rounded-[28px] px-5 pt-7 pb-10 sm:px-7 sm:pt-8 sm:pb-12 text-[#880e3f] select-none">
+        
+        <!-- Texturas de brillo en esquinas -->
+        <div class="glitter-border-top-left"></div>
+        <div class="glitter-border-bottom-right"></div>
+
+        <!-- Destellos estrellados decorativos -->
+        <svg class="sparkle-star absolute top-4 left-6 w-8 h-8 text-white pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0L14.2 9.8L24 12L14.2 14.2L12 24L9.8 14.2L0 12L9.8 9.8L12 0Z"/>
+        </svg>
+        <svg class="sparkle-star absolute bottom-10 right-6 w-9 h-9 text-white pointer-events-none" style="animation-delay: 1.2s;" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0L14.2 9.8L24 12L14.2 14.2L12 24L9.8 14.2L0 12L9.8 9.8L12 0Z"/>
+        </svg>
+
+        <!-- Corazoncitos con brillo distribuidos como en la tarjeta -->
+        <svg class="absolute top-[118px] left-3 w-7 h-7 text-[#c94b76] opacity-85 -rotate-12 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <svg class="absolute top-[115px] left-[41%] w-5 h-5 text-[#c94b76] opacity-80 rotate-12 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <svg class="absolute top-[360px] left-5 w-7 h-7 text-[#c94b76] opacity-85 -rotate-12 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <svg class="absolute bottom-[135px] right-4 w-8 h-8 text-[#c94b76] opacity-85 rotate-12 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <svg class="absolute bottom-[130px] left-12 w-5 h-5 text-[#c94b76] opacity-80 -rotate-12 pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+
+        <!-- GLOBOS ROSADOS, CONFETI Y ROSE GOLD (Esquina superior derecha) -->
+        <div class="animate-float-balloon absolute -top-2 -right-4 w-[145px] sm:w-[165px] h-[290px] pointer-events-none z-10">
+            <svg viewBox="0 0 200 360" class="w-full h-full overflow-visible">
+                <defs>
+                    <!-- Gradiente Globo Rosa Perlado -->
+                    <radialGradient id="pinkBalloon" cx="35%" cy="30%" r="65%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="25%" stop-color="#ffb6d5"/>
+                        <stop offset="75%" stop-color="#e56b9f"/>
+                        <stop offset="100%" stop-color="#a83263"/>
+                    </radialGradient>
+                    <!-- Gradiente Globo Rose Gold Metálico -->
+                    <radialGradient id="roseGoldBalloon" cx="32%" cy="28%" r="68%">
+                        <stop offset="0%" stop-color="#fff5f2"/>
+                        <stop offset="30%" stop-color="#f3b6a8"/>
+                        <stop offset="72%" stop-color="#c97a6b"/>
+                        <stop offset="100%" stop-color="#8a4438"/>
+                    </radialGradient>
+                    <!-- Gradiente Globo Transparente con Confeti -->
+                    <radialGradient id="confettiBalloon" cx="35%" cy="30%" r="65%">
+                        <stop offset="0%" stop-color="rgba(255,255,255,0.85)"/>
+                        <stop offset="55%" stop-color="rgba(255,214,231,0.45)"/>
+                        <stop offset="90%" stop-color="rgba(232,122,159,0.55)"/>
+                        <stop offset="100%" stop-color="rgba(180,65,105,0.65)"/>
+                    </radialGradient>
+                    <!-- Gradiente Globo Fucsia Glitter -->
+                    <radialGradient id="glitterPinkBalloon" cx="35%" cy="30%" r="65%">
+                        <stop offset="0%" stop-color="#ff9ec4"/>
+                        <stop offset="45%" stop-color="#d44d82"/>
+                        <stop offset="100%" stop-color="#7d1841"/>
+                    </radialGradient>
+                </defs>
+
+                <!-- Hilos finos dorados -->
+                <path d="M155 110 Q145 220 175 330" stroke="#b87a56" stroke-width="1" fill="none" opacity="0.7"/>
+                <path d="M110 155 Q125 245 175 330" stroke="#b87a56" stroke-width="1" fill="none" opacity="0.7"/>
+                <path d="M168 190 Q160 265 175 330" stroke="#b87a56" stroke-width="1" fill="none" opacity="0.7"/>
+                <path d="M85 235 Q120 285 175 330" stroke="#b87a56" stroke-width="1" fill="none" opacity="0.7"/>
+                <path d="M125 255 Q145 295 175 330" stroke="#b87a56" stroke-width="1" fill="none" opacity="0.7"/>
+
+                <!-- Globo 1: Rosa superior derecho -->
+                <ellipse cx="155" cy="58" rx="44" ry="52" fill="url(#pinkBalloon)"/>
+                <ellipse cx="139" cy="36" rx="9" ry="16" transform="rotate(-25 139 36)" fill="rgba(255,255,255,0.6)"/>
+
+                <!-- Globo 2: Glitter fucsia medio-izquierda -->
+                <ellipse cx="86" cy="182" rx="38" ry="45" transform="rotate(-12 86 182)" fill="url(#glitterPinkBalloon)"/>
+                <circle cx="75" cy="168" r="1.5" fill="#fff" opacity="0.8"/>
+                <circle cx="92" cy="175" r="1.5" fill="#fff" opacity="0.8"/>
+                <circle cx="80" cy="195" r="1.5" fill="#fff" opacity="0.8"/>
+
+                <!-- Globo 3: Confeti Rose Gold superior-medio -->
+                <g transform="rotate(-8 112 108)">
+                    <ellipse cx="112" cy="108" rx="42" ry="49" fill="url(#confettiBalloon)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+                    <!-- Puntos de confeti -->
+                    <circle cx="98" cy="88" r="3" fill="#c97a6b"/>
+                    <circle cx="118" cy="82" r="3.5" fill="#880e3f"/>
+                    <circle cx="128" cy="102" r="2.8" fill="#e5989b"/>
+                    <circle cx="104" cy="112" r="3.5" fill="#b56576"/>
+                    <circle cx="116" cy="126" r="3" fill="#880e3f"/>
+                    <circle cx="94" cy="124" r="2.5" fill="#d48c96"/>
+                    <circle cx="124" cy="136" r="3.2" fill="#c97a6b"/>
+                    <circle cx="108" cy="96" r="2.5" fill="#ffffff"/>
+                </g>
+
+                <!-- Globo 4: Rose Gold metálico derecha -->
+                <ellipse cx="168" cy="148" rx="40" ry="48" fill="url(#roseGoldBalloon)"/>
+                <ellipse cx="152" cy="128" rx="8" ry="15" transform="rotate(-20 152 128)" fill="rgba(255,255,255,0.65)"/>
+
+                <!-- Globo 5: Rosa pastel inferior izquierda -->
+                <ellipse cx="96" cy="252" rx="35" ry="42" transform="rotate(-25 96 252)" fill="url(#pinkBalloon)"/>
+
+                <!-- Globo 6: Confeti rosa frontal -->
+                <g transform="rotate(-5 128 202)">
+                    <ellipse cx="128" cy="202" rx="40" ry="47" fill="url(#confettiBalloon)" stroke="rgba(255,255,255,0.75)" stroke-width="1.2"/>
+                    <circle cx="114" cy="184" r="3.2" fill="#9c144a"/>
+                    <circle cx="136" cy="180" r="2.8" fill="#e56b9f"/>
+                    <circle cx="142" cy="204" r="3.4" fill="#880e3f"/>
+                    <circle cx="120" cy="210" r="3" fill="#f48fb1"/>
+                    <circle cx="130" cy="228" r="3.2" fill="#9c144a"/>
+                    <circle cx="112" cy="224" r="2.5" fill="#c97a6b"/>
+                    <ellipse cx="113" cy="182" rx="7" ry="13" transform="rotate(-25 113 182)" fill="rgba(255,255,255,0.65)"/>
+                </g>
+
+                <!-- Globo 7: Rosa inferior derecha -->
+                <ellipse cx="174" cy="245" rx="36" ry="44" fill="url(#pinkBalloon)"/>
+            </svg>
+        </div>
+
+        <!-- ENCABEZADO: CORONA ROSE GOLD + TEXTO DE INVITACIÓN -->
+        <div class="relative z-10 flex items-start justify-between gap-2">
+            <!-- Corona elegante inclinada arriba a la izquierda -->
+            <div class="animate-float-crown w-[135px] sm:w-[155px] -ml-2 -mt-2 shrink-0">
+                <svg viewBox="0 0 220 150" class="w-full h-auto drop-shadow-md overflow-visible">
+                    <defs>
+                        <linearGradient id="crownRoseGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#f7d1cd"/>
+                            <stop offset="30%" stop-color="#d48c96"/>
+                            <stop offset="60%" stop-color="#9e4756"/>
+                            <stop offset="85%" stop-color="#f2c6c2"/>
+                            <stop offset="100%" stop-color="#8a3846"/>
+                        </linearGradient>
+                        <radialGradient id="diamondGem" cx="35%" cy="35%" r="65%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="65%" stop-color="#fce4ec"/>
+                            <stop offset="100%" stop-color="#d48c96"/>
+                        </radialGradient>
+                    </defs>
+                    <g transform="rotate(-17 110 85)">
+                        <!-- Base curva de la corona -->
+                        <path d="M35 112 Q110 92 185 112 L180 122 Q110 103 40 122 Z" fill="url(#crownRoseGold)" stroke="#7a2c3b" stroke-width="1.2"/>
+                        <!-- Estructura calada de picos y arcos -->
+                        <path d="M38 110 L26 68 L62 92 L72 44 L96 86 L110 28 L124 86 L148 44 L158 92 L194 68 L182 110" fill="none" stroke="url(#crownRoseGold)" stroke-width="5.5" stroke-linejoin="round"/>
+                        <path d="M55 104 Q72 72 92 100 M128 100 Q148 72 165 104 M85 98 Q110 62 135 98" fill="none" stroke="url(#crownRoseGold)" stroke-width="3.5"/>
+                        <!-- Diamantes / Perlas en las puntas -->
+                        <circle cx="110" cy="24" r="7.5" fill="url(#diamondGem)" stroke="#9e4756" stroke-width="1.2"/>
+                        <circle cx="72" cy="41" r="6" fill="url(#diamondGem)" stroke="#9e4756" stroke-width="1.2"/>
+                        <circle cx="148" cy="41" r="6" fill="url(#diamondGem)" stroke="#9e4756" stroke-width="1.2"/>
+                        <circle cx="25" cy="65" r="5" fill="url(#diamondGem)" stroke="#9e4756" stroke-width="1.2"/>
+                        <circle cx="195" cy="65" r="5" fill="url(#diamondGem)" stroke="#9e4756" stroke-width="1.2"/>
+                        <!-- Gemas incrustadas en el centro -->
+                        <polygon points="110,65 117,76 110,87 103,76" fill="url(#diamondGem)" stroke="#9e4756" stroke-width="1"/>
+                        <circle cx="78" cy="84" r="4.5" fill="url(#diamondGem)" stroke="#9e4756" stroke-width="1"/>
+                        <circle cx="142" cy="84" r="4.5" fill="url(#diamondGem)" stroke="#9e4756" stroke-width="1"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Texto superior derecho -->
+            <div class="text-center pt-1 pr-2 sm:pr-4 flex-1">
+                <p class="font-serif-italic font-semibold text-[15px] sm:text-[17px] leading-snug text-[#880e3f]">
+                    Estás invitado(a) a<br>
+                    celebrar conmigo un día<br>
+                    muy especial...
+                </p>
+                <!-- Ornamento con corazón caligráfico -->
+                <svg viewBox="0 0 180 32" class="w-36 sm:w-40 mx-auto mt-1 text-[#880e3f]" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <path d="M5 24 Q45 16 86 24 C86 24 72 8 82 4 C88 2 92 10 92 15 C92 10 98 2 104 4 C112 8 94 24 94 24 Q135 12 175 18"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- TÍTULO PRINCIPAL: MI CUMPLEAÑOS -->
+        <div class="relative z-10 text-center -mt-3 sm:-mt-4">
+            <h1 class="font-script-title text-[#880e3f] leading-none">
+                <span class="block text-[54px] sm:text-[64px] -mb-3 sm:-mb-4">Mi</span>
+                <span class="block text-[64px] sm:text-[78px] tracking-wide">Cumpleaños</span>
+            </h1>
+            <!-- Trazo curvo subrayado bajo "Cumpleaños" -->
+            <svg viewBox="0 0 260 22" class="w-52 sm:w-64 mx-auto -mt-1 text-[#880e3f]" fill="currentColor">
+                <path d="M10 16 Q130 -4 250 14 Q254 16 250 19 Q245 21 242 18 Q130 3 12 19 Q8 19 10 16 Z"/>
+            </svg>
+        </div>
+
+        <!-- MENSAJE EMOTIVO -->
+        <div class="special-note relative z-10 text-center mt-2 px-4 py-3">
+            <p class="font-serif-italic font-semibold text-[16px] sm:text-[18px] leading-snug text-[#880e3f]">
+                Tu presencia hará que<br>
+                esta celebración sea aún<br>
+                más especial.
+            </p>
+            <!-- Ornamento divisor superior con corazón -->
+            <svg viewBox="0 0 240 28" class="w-48 sm:w-56 mx-auto mt-1 text-[#880e3f]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M10 18 Q65 13 116 22 C116 22 104 9 112 5 C117 3 120 10 120 14 C120 10 124 3 129 5 C136 9 122 22 122 22 Q175 13 230 18"/>
+            </svg>
+        </div>
+
+        <!-- NOMBRE DE LA CUMPLEAÑERA -->
+        <div class="relative z-10 text-center mt-1">
+            <h2 class="font-script-name text-[#880e3f] text-[44px] sm:text-[54px] leading-[1.02]">
+                Monica Eulalia<br>
+                Changanaque Cárcamo
+            </h2>
+            <!-- Ornamento divisor inferior con corazón -->
+            <svg viewBox="0 0 240 28" class="w-48 sm:w-56 mx-auto mt-1 text-[#880e3f]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M10 18 Q65 13 116 22 C116 22 104 9 112 5 C117 3 120 10 120 14 C120 10 124 3 129 5 C136 9 122 22 122 22 Q175 13 230 18"/>
+            </svg>
+        </div>
+
+        <!-- SUBTÍTULO CON RAYOS DE DESTELLO LATERALES -->
+        <div class="relative z-10 flex items-center justify-center gap-1.5 mt-2">
+            <!-- Rayos izquierdos -->
+            <svg viewBox="0 0 30 34" class="w-6 h-7 text-[#880e3f] shrink-0" fill="currentColor">
+                <rect x="8" y="2" width="18" height="4" rx="2" transform="rotate(35 8 2)"/>
+                <rect x="2" y="15" width="22" height="4" rx="2"/>
+                <rect x="6" y="28" width="18" height="4" rx="2" transform="rotate(-35 6 28)"/>
+            </svg>
+
+            <p class="font-serif-italic font-bold text-[17px] sm:text-[19px] text-[#880e3f] text-center">
+                ¡Acompáñame a celebrar mis cumpleaños!
+            </p>
+
+            <!-- Rayos derechos -->
+            <svg viewBox="0 0 30 34" class="w-6 h-7 text-[#880e3f] shrink-0 scale-x-[-1]" fill="currentColor">
+                <rect x="8" y="2" width="18" height="4" rx="2" transform="rotate(35 8 2)"/>
+                <rect x="2" y="15" width="22" height="4" rx="2"/>
+                <rect x="6" y="28" width="18" height="4" rx="2" transform="rotate(-35 6 28)"/>
+            </svg>
+        </div>
+
+        <!-- BLOQUE DE FECHA Y HORA -->
+        <div class="date-panel relative z-10 grid grid-cols-2 items-center mt-4 py-2 px-2 rounded-2xl">
+            <!-- Columna Izquierda: Sábado 28 de Noviembre -->
+            <div class="flex items-center justify-center gap-2.5 pr-2 border-r-[2.5px] border-[#880e3f]/80">
+                <!-- Icono Calendario -->
+                <svg viewBox="0 0 48 48" class="w-11 h-11 sm:w-12 sm:h-12 text-[#880e3f] shrink-0" fill="currentColor">
+                    <path d="M38 8h-3V5c0-1.1-.9-2-2-2s-2 .9-2 2v3H17V5c0-1.1-.9-2-2-2s-2 .9-2 2v3h-3c-2.8 0-5 2.2-5 5v26c0 2.8 2.2 5 5 5h28c2.8 0 5-2.2 5-5V13c0-2.8-2.2-5-5-5zm1 31c0 .6-.4 1-1 1H10c-.6 0-1-.4-1-1V19h30v20z"/>
+                    <rect x="13" y="23" width="5" height="4" rx="1"/>
+                    <rect x="21.5" y="23" width="5" height="4" rx="1"/>
+                    <rect x="30" y="23" width="5" height="4" rx="1"/>
+                    <rect x="13" y="30" width="5" height="4" rx="1"/>
+                    <rect x="21.5" y="30" width="5" height="4" rx="1"/>
+                    <rect x="30" y="30" width="5" height="4" rx="1"/>
+                </svg>
+
+                <div class="text-center leading-tight">
+                    <span class="block font-bold text-[15px] sm:text-[17px]">Sábado</span>
+                    <span class="block font-extrabold text-[36px] sm:text-[42px] leading-[0.95] my-0.5" style="font-family: 'Lora', serif;">28</span>
+                    <span class="block font-bold text-[13px] sm:text-[14px]">de Noviembre</span>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: A partir de las 8:00 PM -->
+            <div class="flex items-center justify-center gap-2 pl-2">
+                <!-- Icono Reloj -->
+                <svg viewBox="0 0 48 48" class="w-11 h-11 sm:w-12 sm:h-12 text-[#880e3f] shrink-0" fill="none" stroke="currentColor" stroke-width="3.8">
+                    <circle cx="24" cy="24" r="18"/>
+                    <path d="M24 13v11l7 4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                <div class="text-center leading-tight">
+                    <span class="block font-bold text-[13px] sm:text-[14px]">A partir de las</span>
+                    <span class="block font-extrabold text-[23px] sm:text-[26px] tracking-tight mt-0.5">8:00 PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTADOR REGRESIVO DINÁMICO HACIA EL 28 DE NOVIEMBRE DE 2026 A LAS 8:00 PM -->
+        <div class="relative z-10 mt-3 px-2">
+            <div class="bg-white/60 backdrop-blur-sm border border-white/80 rounded-2xl py-2 px-3 shadow-sm">
+                <p class="text-center text-[10px] uppercase tracking-widest font-bold text-[#880e3f]/80 mb-1">
+                    Faltan para celebrar juntos
+                </p>
+                <div id="countdownGrid" class="grid grid-cols-4 gap-1.5 text-center">
+                    <div class="bg-[#880e3f]/10 rounded-xl py-1">
+                        <span id="cd-days" class="block font-extrabold text-base sm:text-lg leading-none text-[#880e3f]">00</span>
+                        <span class="text-[9px] font-bold uppercase text-[#880e3f]/80">Días</span>
+                    </div>
+                    <div class="bg-[#880e3f]/10 rounded-xl py-1">
+                        <span id="cd-hours" class="block font-extrabold text-base sm:text-lg leading-none text-[#880e3f]">00</span>
+                        <span class="text-[9px] font-bold uppercase text-[#880e3f]/80">Horas</span>
+                    </div>
+                    <div class="bg-[#880e3f]/10 rounded-xl py-1">
+                        <span id="cd-mins" class="block font-extrabold text-base sm:text-lg leading-none text-[#880e3f]">00</span>
+                        <span class="text-[9px] font-bold uppercase text-[#880e3f]/80">Min</span>
+                    </div>
+                    <div class="bg-[#880e3f]/10 rounded-xl py-1">
+                        <span id="cd-secs" class="block font-extrabold text-base sm:text-lg leading-none text-[#880e3f]">00</span>
+                        <span class="text-[9px] font-bold uppercase text-[#880e3f]/80">Seg</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOQUE DE DIRECCIÓN Y BOTÓN GOOGLE MAPS -->
+        <div class="relative z-10 mt-3.5 px-1">
+            <div class="event-block location-pill rounded-full py-2.5 px-4 flex items-center gap-2.5 shadow-sm">
+                <!-- Pin de Ubicación -->
+                <svg viewBox="0 0 24 24" class="w-9 h-9 text-[#880e3f] shrink-0" fill="currentColor">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+
+                <div class="text-center flex-1 pr-2">
+                    <p class="font-extrabold text-[15px] leading-tight">Lugar:</p>
+                    <p class="font-bold text-[12px] sm:text-[13px] leading-snug">
+                        Jr. Hito N.° 275, Pasadizo 7ma,<br>
+                        José Gálvez – Villa María del Triunfo, Lima
+                    </p>
+                </div>
+            </div>
+
+            <!-- Botón Interactivo: Ubicación en Google Maps -->
+            <div class="flex justify-center mt-2">
+                <a href="https://www.google.com/maps/search/?api=1&query=Jr.+Hito+275,+Jose+Galvez,+Villa+Maria+del+Triunfo,+Lima" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="maps-btn relative inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-pink-200 text-[#5c3a21] font-bold text-[13px] sm:text-[14px]">
+                    <!-- Icono Pin multicolor Google Maps -->
+                    <svg viewBox="0 0 24 24" class="w-5 h-5 shrink-0">
+                        <path fill="#EA4335" d="M12 2C8.13 2 5 5.13 5 9c0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5s1-.95 1.25-1.5c.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4C18.5 12.37 19 10.74 19 9c0-3.87-3.13-7-7-7z"/>
+                        <path fill="#4285F4" d="M12 2v7l4.95-4.95C15.68 2.78 13.93 2 12 2z"/>
+                        <path fill="#34A853" d="M7.05 13.95L12 9v13c-.79 0-1-.95-1.26-1.5-.36-.81-.7-1.51-1.17-2.26-.88-1.42-1.99-2.64-2.52-4.29z"/>
+                        <path fill="#FBBC05" d="M5 9c0 1.74.5 3.37 1.41 4.84l5.59-4.84H5z"/>
+                        <circle cx="12" cy="9" r="2.6" fill="#FFFFFF"/>
+                    </svg>
+                    <span>Ubicación en Google Maps</span>
+
+                    <!-- Icono manito haciendo clic como en la tarjeta -->
+                    <svg viewBox="0 0 32 32" class="animate-hand-click w-6 h-6 -mr-2 text-black drop-shadow-sm" fill="none">
+                        <path d="M10 3v3M5 6l2 2M15 6l-2 2M4 11h3" stroke="#1f2937" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M11 10.5v9.5l-2.3-2.1c-.8-.7-2-.7-2.7.1-.6.7-.6 1.8.1 2.5l5.4 5.5c1.1 1.1 2.6 1.8 4.2 1.8h4.8c2.8 0 5-2.2 5-5v-5.3c0-1.4-1.1-2.5-2.5-2.5-.5 0-1 .2-1.4.4-.3-1.1-1.3-1.9-2.4-1.9-.6 0-1.1.2-1.5.5-.3-1.1-1.3-2-2.5-2-.6 0-1.1.2-1.5.6V10.5c0-1.1-.9-2-2-2s-2 .9-2 2z" fill="#ffffff" stroke="#1f2937" stroke-width="1.8" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- PIE DE TARJETA: ¡NO FALTES! Y BOTÓN RSVP -->
+        <div class="relative z-10 mt-4 text-center">
+            <div class="inline-flex items-end justify-center gap-1 pl-12 sm:pl-14">
+                <p class="font-script-title text-[42px] sm:text-[50px] text-[#880e3f] leading-none">
+                    Te espero
+                </p>
+                <!-- Corazón con colita caligráfica a la derecha -->
+                <svg viewBox="0 0 80 42" class="w-16 sm:w-20 text-[#880e3f] -mb-1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+                    <path d="M2 35 Q18 33 24 31 C24 31 8 15 16 8 C22 3 28 11 28 17 C28 11 35 3 41 8 C49 15 28 31 28 31 Q52 38 76 22"/>
+                </svg>
+            </div>
+
+            <!-- Botón Confirmar Asistencia (RSVP) -->
+            <div class="mt-4 flex justify-center pl-10 sm:pl-12">
+                <button id="openRsvpBtn" type="button" class="rsvp-btn text-white font-bold text-xs sm:text-sm px-6 py-2.5 rounded-full inline-flex items-center gap-2 tracking-wide">
+                    <span>💌</span>
+                    <span>Confirmar Asistencia</span>
+                </button>
+            </div>
+
+            <!-- Compartir invitación -->
+            <div class="mt-3 flex justify-center pl-10 sm:pl-12">
+                <a id="shareInviteBtn" href="#" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/70 text-[#880e3f] border border-pink-200 text-[11px] sm:text-[12px] font-bold shadow-sm transition hover:bg-white">
+                    <span>📤</span>
+                    <span>Compartir invitación</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- LAZO SATINADO ROSA EN LA ESQUINA INFERIOR IZQUIERDA -->
+        <div class="absolute -bottom-3 -left-3 w-[135px] sm:w-[155px] pointer-events-none z-20">
+            <svg viewBox="0 0 200 190" class="w-full h-auto drop-shadow-lg overflow-visible">
+                <defs>
+                    <linearGradient id="ribbonMain" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ffd1e3"/>
+                        <stop offset="35%" stop-color="#f48fb1"/>
+                        <stop offset="70%" stop-color="#c94b76"/>
+                        <stop offset="100%" stop-color="#880e3f"/>
+                    </linearGradient>
+                    <linearGradient id="ribbonHighlight" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#d85a82"/>
+                        <stop offset="50%" stop-color="#ffc2da"/>
+                        <stop offset="100%" stop-color="#e56b9f"/>
+                    </linearGradient>
+                </defs>
+
+                <!-- Base caja con textura brillo sutil detrás del lazo -->
+                <polygon points="0,120 75,95 140,155 120,195 0,195" fill="#c94b76" opacity="0.55"/>
+
+                <!-- Cintas colgantes inferiores -->
+                <path d="M72 95 L22 182 L58 174 L76 192 L92 105 Z" fill="url(#ribbonMain)" stroke="#880e3f" stroke-width="0.8"/>
+                <path d="M92 98 L128 190 L146 172 L182 178 L108 92 Z" fill="url(#ribbonHighlight)" stroke="#880e3f" stroke-width="0.8"/>
+
+                <!-- Oreja izquierda del moño -->
+                <path d="M76 82 C35 35 5 55 12 92 C18 122 52 112 76 94 Z" fill="url(#ribbonMain)" stroke="#9c144a" stroke-width="0.8"/>
+                <path d="M72 85 C42 58 22 72 28 92 C33 105 55 98 72 90 Z" fill="#880e3f" opacity="0.35"/>
+
+                <!-- Oreja derecha del moño -->
+                <path d="M98 82 C138 35 170 55 162 92 C156 122 122 112 98 94 Z" fill="url(#ribbonHighlight)" stroke="#9c144a" stroke-width="0.8"/>
+                <path d="M102 85 C132 58 152 72 146 92 C141 105 119 98 102 90 Z" fill="#880e3f" opacity="0.35"/>
+
+                <!-- Nudo central satinado -->
+                <rect x="73" y="74" width="28" height="26" rx="8" transform="rotate(-12 87 87)" fill="url(#ribbonMain)" stroke="#880e3f" stroke-width="1"/>
+            </svg>
+        </div>
+
+    </main>
+
+    <!-- MODAL DE CONFIRMACIÓN DE ASISTENCIA (RSVP) -->
+    <div id="rsvpModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border-2 border-pink-200 relative animate-[fadeIn_0.25s_ease-out]">
+            <button id="closeRsvpBtn" type="button" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-pink-100 hover:bg-pink-200 text-[#880e3f] font-bold flex items-center justify-center transition">
+                ✕
+            </button>
+
+            <div class="text-center mb-4">
+                <span class="text-3xl">👑</span>
+                <h3 class="font-script-name text-4xl text-[#880e3f] mt-1">Confirma tu Asistencia</h3>
+                <p class="text-xs text-gray-600 mt-1">Cumpleaños de Monica Eulalia • Sábado 28 de Nov.</p>
+            </div>
+
+            <form id="rsvpForm" class="space-y-3.5">
+                <div>
+                    <label for="guestName" class="block text-xs font-bold text-[#880e3f] mb-1">Tu Nombre y Apellido *</label>
+                    <input type="text" id="guestName" required placeholder="Ej. María Fernanda Pérez"
+                           class="w-full px-3.5 py-2.5 rounded-xl border border-pink-200 focus:outline-none focus:ring-2 focus:ring-[#880e3f] text-sm text-gray-800">
+                </div>
+
+                <div>
+                    <label for="guestCount" class="block text-xs font-bold text-[#880e3f] mb-1">¿Cuántas personas asisten?</label>
+                    <select id="guestCount" class="w-full px-3.5 py-2.5 rounded-xl border border-pink-200 focus:outline-none focus:ring-2 focus:ring-[#880e3f] text-sm text-gray-800 bg-white">
+                        <option value="1 persona">1 persona (Solo yo)</option>
+                        <option value="2 personas">2 personas</option>
+                        <option value="3 personas">3 personas</option>
+                        <option value="4 personas">4 personas</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="guestMessage" class="block text-xs font-bold text-[#880e3f] mb-1">Mensaje o saludo para Monica (Opcional)</label>
+                    <textarea id="guestMessage" rows="2" placeholder="¡Feliz cumpleaños Monica! Ahí estaremos..."
+                              class="w-full px-3.5 py-2 rounded-xl border border-pink-200 focus:outline-none focus:ring-2 focus:ring-[#880e3f] text-sm text-gray-800"></textarea>
+                </div>
+
+                <button type="submit" class="w-full rsvp-btn text-white font-bold text-sm py-3 rounded-xl shadow-md mt-2">
+                    ✨ Enviar Confirmación
+                </button>
+            </form>
+
+            <!-- Mensaje de éxito dentro del modal (reemplaza cualquier alert) -->
+            <div id="rsvpSuccessBox" class="hidden text-center py-4 space-y-3">
+                <div class="w-14 h-14 bg-pink-100 text-[#880e3f] rounded-full flex items-center justify-center mx-auto text-2xl">
+                    💖
+                </div>
+                <h4 class="font-bold text-lg text-[#880e3f]">¡Gracias por confirmar!</h4>
+                <p id="rsvpSummaryText" class="text-xs text-gray-600 leading-relaxed"></p>
+                <div class="pt-2 flex flex-col gap-2">
+                    <a id="whatsappShareLink" href="#" target="_blank" rel="noopener noreferrer"
+                       class="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs py-2.5 px-4 rounded-xl inline-flex items-center justify-center gap-2 shadow-sm transition">
+                        <span>📲</span>
+                        <span>Enviar también por WhatsApp</span>
+                    </a>
+                    <button type="button" id="doneRsvpBtn" class="text-xs font-semibold text-[#880e3f] underline py-1">
+                        Volver a la invitación
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * 1. CONTADOR REGRESIVO DINÁMICO
+         * Objetivo: Sábado 28 de Noviembre de 2026 a las 8:00 PM (20:00:00 hora local)
+         */
+        function initCountdown() {
+            const targetDate = new Date(2026, 10, 28, 20, 0, 0).getTime(); // Mes 10 = Noviembre (0-indexado)
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance <= 0) {
+                    document.getElementById('countdownGrid').innerHTML = 
+                        '<div class="col-span-4 py-1 font-bold text-xs text-[#880e3f]">🎉 ¡Hoy es el gran día de celebración! 🎉</div>';
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+                document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('cd-mins').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('cd-secs').textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        /**
+         * 2. SISTEMA DE PARTÍCULAS Y DESTELLOS SUAVES EN CANVAS
+         */
+        function initGlitterCanvas() {
+            const canvas = document.getElementById('glitterCanvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            const colors = ['#ffffff', '#ffd1e3', '#f48fb1', '#e87a9f', '#f3b6a8'];
+
+            class Sparkle {
+                constructor(burst = false, x = null, y = null) {
+                    this.x = x !== null ? x : Math.random() * canvas.width;
+                    this.y = y !== null ? y : Math.random() * canvas.height;
+                    this.size = burst ? (Math.random() * 4 + 2) : (Math.random() * 2.5 + 0.8);
+                    this.speedY = burst ? (Math.random() * -4 - 1) : (Math.random() * -0.45 - 0.15);
+                    this.speedX = burst ? ((Math.random() - 0.5) * 6) : ((Math.random() - 0.5) * 0.3);
+                    this.gravity = burst ? 0.08 : 0;
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.alpha = Math.random() * 0.7 + 0.3;
+                    this.pulseSpeed = Math.random() * 0.03 + 0.01;
+                    this.burst = burst;
+                    this.life = burst ? 110 : Infinity;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.speedY += this.gravity;
+                    this.alpha += Math.sin(Date.now() * this.pulseSpeed) * 0.02;
+
+                    if (this.burst) {
+                        this.life--;
+                    } else if (this.y < -10) {
+                        this.y = canvas.height + 10;
+                        this.x = Math.random() * canvas.width;
+                    }
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = Math.max(0, Math.min(1, this.alpha));
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    // Dibuja un destello de 4 puntas
+                    const s = this.size;
+                    ctx.moveTo(this.x, this.y - s * 1.8);
+                    ctx.lineTo(this.x + s * 0.45, this.y - s * 0.45);
+                    ctx.lineTo(this.x + s * 1.8, this.y);
+                    ctx.lineTo(this.x + s * 0.45, this.y + s * 0.45);
+                    ctx.lineTo(this.x, this.y + s * 1.8);
+                    ctx.lineTo(this.x - s * 0.45, this.y + s * 0.45);
+                    ctx.lineTo(this.x - s * 1.8, this.y);
+                    ctx.lineTo(this.x - s * 0.45, this.y - s * 0.45);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            // Partículas ambientales iniciales
+            for (let i = 0; i < 38; i++) {
+                particles.push(new Sparkle(false));
+            }
+
+            // Función global para lanzar ráfaga de brillos
+            window.triggerGlitterBurst = function() {
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2.5;
+                for (let i = 0; i < 45; i++) {
+                    particles.push(new Sparkle(true, centerX, centerY));
+                }
+            };
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles = particles.filter(p => p.life > 0);
+                for (const p of particles) {
+                    p.update();
+                    p.draw();
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        /**
+         * 3. MELODÍA SUAVE DE CAJA MUSICAL (CUMPLEAÑOS FELIZ) CON TONE.JS
+         */
+        function initMusicPlayer() {
+            const btn = document.getElementById('musicToggleBtn');
+            const icon = document.getElementById('musicIcon');
+            const label = document.getElementById('musicLabel');
+            let isPlaying = false;
+            let loopEvent = null;
+            let synth = null;
+
+            const melody = [
+                { note: 'C4', dur: '8n', time: 0 },
+                { note: 'C4', dur: '8n', time: 0.35 },
+                { note: 'D4', dur: '4n', time: 0.7 },
+                { note: 'C4', dur: '4n', time: 1.3 },
+                { note: 'F4', dur: '4n', time: 1.9 },
+                { note: 'E4', dur: '2n', time: 2.5 },
+
+                { note: 'C4', dur: '8n', time: 3.6 },
+                { note: 'C4', dur: '8n', time: 3.95 },
+                { note: 'D4', dur: '4n', time: 4.3 },
+                { note: 'C4', dur: '4n', time: 4.9 },
+                { note: 'G4', dur: '4n', time: 5.5 },
+                { note: 'F4', dur: '2n', time: 6.1 },
+
+                { note: 'C4', dur: '8n', time: 7.2 },
+                { note: 'C4', dur: '8n', time: 7.55 },
+                { note: 'C5', dur: '4n', time: 7.9 },
+                { note: 'A4', dur: '4n', time: 8.5 },
+                { note: 'F4', dur: '4n', time: 9.1 },
+                { note: 'E4', dur: '4n', time: 9.7 },
+                { note: 'D4', dur: '2n', time: 10.3 },
+
+                { note: 'Bb4', dur: '8n', time: 11.4 },
+                { note: 'Bb4', dur: '8n', time: 11.75 },
+                { note: 'A4', dur: '4n', time: 12.1 },
+                { note: 'F4', dur: '4n', time: 12.7 },
+                { note: 'G4', dur: '4n', time: 13.3 },
+                { note: 'F4', dur: '2n', time: 13.9 }
+            ];
+
+            btn.addEventListener('click', async () => {
+                try {
+                    if (!isPlaying) {
+                        await Tone.start();
+                        if (!synth) {
+                            synth = new Tone.PolySynth(Tone.Synth, {
+                                oscillator: { type: 'sine' },
+                                envelope: { attack: 0.04, decay: 0.3, sustain: 0.2, release: 1.2 }
+                            }).toDestination();
+                            synth.volume.value = -10;
+                        }
+
+                        const playSequence = () => {
+                            const now = Tone.now();
+                            melody.forEach(item => {
+                                synth.triggerAttackRelease(item.note, item.dur, now + item.time);
+                            });
+                        };
+
+                        playSequence();
+                        loopEvent = setInterval(playSequence, 15500);
+                        isPlaying = true;
+                        icon.textContent = '🎶';
+                        label.textContent = 'Pausar Melodía';
+                    } else {
+                        clearInterval(loopEvent);
+                        if (synth) synth.releaseAll();
+                        isPlaying = false;
+                        icon.textContent = '🎵';
+                        label.textContent = 'Activar Melodía';
+                    }
+                } catch (err) {
+                    console.error('Error al reproducir audio:', err);
+                }
+            });
+        }
+
+        /**
+         * 4. MODAL INTERACTIVO DE CONFIRMACIÓN (RSVP)
+         */
+        function initShareButton() {
+            const shareBtn = document.getElementById('shareInviteBtn');
+            const shareText = encodeURIComponent(
+                '🎉 ¡Te invito a celebrar mi cumpleaños!\n\nMonica Eulalia Changanaque Cárcamo\n📅 Sábado 28 de Noviembre\n🕗 A partir de las 8:00 PM\n📍 Jr. Hito N.° 275, Pasadizo 7ma, José Gálvez – Villa María del Triunfo, Lima\n\n¡No faltes! 🩷'
+            );
+            shareBtn.href = `https://wa.me/?text=${shareText}`;
+        }
+
+        function initRsvpModal() {
+            const modal = document.getElementById('rsvpModal');
+            const openBtn = document.getElementById('openRsvpBtn');
+            const closeBtn = document.getElementById('closeRsvpBtn');
+            const doneBtn = document.getElementById('doneRsvpBtn');
+            const form = document.getElementById('rsvpForm');
+            const successBox = document.getElementById('rsvpSuccessBox');
+
+            function openModal() {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+
+            function closeModal() {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+
+            openBtn.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            doneBtn.addEventListener('click', () => {
+                closeModal();
+                setTimeout(() => {
+                    form.classList.remove('hidden');
+                    successBox.classList.add('hidden');
+                    form.reset();
+                }, 300);
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('guestName').value.trim();
+                const count = document.getElementById('guestCount').value;
+                const msg = document.getElementById('guestMessage').value.trim();
+
+                if (!name) return;
+
+                // Actualizar resumen visual
+                const summary = `Hemos registrado a <strong>${name}</strong> (${count}) para celebrar junto a Monica Eulalia el Sábado 28 de Noviembre a las 8:00 PM.`;
+                document.getElementById('rsvpSummaryText').innerHTML = summary;
+
+                // Enlace prellenado de WhatsApp para compartir confirmación si el invitado desea
+                const waText = encodeURIComponent(
+                    `¡Hola! Confirmo mi asistencia al cumpleaños de Monica Eulalia Changanaque Cárcamo (Sábado 28 de Noviembre - 8:00 PM).\n` +
+                    `👤 Nombre: ${name}\n` +
+                    `👥 Asistentes: ${count}` +
+                    (msg ? `\n💌 Mensaje: "${msg}"` : '')
+                );
+                document.getElementById('whatsappShareLink').href = `https://wa.me/?text=${waText}`;
+
+                form.classList.add('hidden');
+                successBox.classList.remove('hidden');
+
+                if (window.triggerGlitterBurst) {
+                    window.triggerGlitterBurst();
+                }
+            });
+        }
+
+        // Inicializar todo al cargar la ventana
+        window.onload = function() {
+            initCountdown();
+            initGlitterCanvas();
+            initMusicPlayer();
+            initShareButton();
+            initRsvpModal();
+
+            document.getElementById('confettiBtn').addEventListener('click', () => {
+                if (window.triggerGlitterBurst) window.triggerGlitterBurst();
+            });
+        };
+    </script>
+</body>
+</html>
