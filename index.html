@@ -871,6 +871,7 @@
             let isPlaying = false;
             let loopEvent = null;
             let synth = null;
+            let startedByInteraction = false;
 
             const melody = [
                 { note: 'C4', dur: '8n', time: 0 },
@@ -903,41 +904,68 @@
                 { note: 'F4', dur: '2n', time: 13.9 }
             ];
 
-            btn.addEventListener('click', async () => {
+            const startMusic = async () => {
                 try {
-                    if (!isPlaying) {
-                        await Tone.start();
-                        if (!synth) {
-                            synth = new Tone.PolySynth(Tone.Synth, {
-                                oscillator: { type: 'sine' },
-                                envelope: { attack: 0.04, decay: 0.3, sustain: 0.2, release: 1.2 }
-                            }).toDestination();
-                            synth.volume.value = -10;
-                        }
+                    if (isPlaying) return;
 
-                        const playSequence = () => {
-                            const now = Tone.now();
-                            melody.forEach(item => {
-                                synth.triggerAttackRelease(item.note, item.dur, now + item.time);
-                            });
-                        };
-
-                        playSequence();
-                        loopEvent = setInterval(playSequence, 15500);
-                        isPlaying = true;
-                        icon.textContent = '🎶';
-                        label.textContent = 'Pausar Melodía';
-                    } else {
-                        clearInterval(loopEvent);
-                        if (synth) synth.releaseAll();
-                        isPlaying = false;
-                        icon.textContent = '🎵';
-                        label.textContent = 'Activar Melodía';
+                    await Tone.start();
+                    if (!synth) {
+                        synth = new Tone.PolySynth(Tone.Synth, {
+                            oscillator: { type: 'sine' },
+                            envelope: { attack: 0.04, decay: 0.3, sustain: 0.2, release: 1.2 }
+                        }).toDestination();
+                        synth.volume.value = -10;
                     }
+
+                    const playSequence = () => {
+                        const now = Tone.now();
+                        melody.forEach(item => {
+                            synth.triggerAttackRelease(item.note, item.dur, now + item.time);
+                        });
+                    };
+
+                    playSequence();
+                    loopEvent = setInterval(playSequence, 15500);
+                    isPlaying = true;
+                    icon.textContent = '🎶';
+                    label.textContent = 'Pausar Melodía';
                 } catch (err) {
                     console.error('Error al reproducir audio:', err);
                 }
-            });
+            };
+
+            const toggleMusic = async () => {
+                startedByInteraction = true;
+                if (!isPlaying) {
+                    await startMusic();
+                } else {
+                    clearInterval(loopEvent);
+                    if (synth) synth.releaseAll();
+                    isPlaying = false;
+                    icon.textContent = '🎵';
+                    label.textContent = 'Activar Melodía';
+                }
+            };
+
+            btn.addEventListener('click', toggleMusic);
+            document.body.addEventListener('pointerdown', () => {
+                if (!startedByInteraction) {
+                    startMusic();
+                    startedByInteraction = true;
+                }
+            }, { once: true });
+            document.body.addEventListener('keydown', () => {
+                if (!startedByInteraction) {
+                    startMusic();
+                    startedByInteraction = true;
+                }
+            }, { once: true });
+
+            setTimeout(() => {
+                if (!startedByInteraction) {
+                    startMusic();
+                }
+            }, 800);
         }
 
         /**
