@@ -468,8 +468,8 @@
         <!-- NOMBRE DE LA CUMPLEAÑERA -->
         <div class="relative z-10 text-center mt-1">
             <h2 class="font-script-name text-[#880e3f] text-[44px] sm:text-[54px] leading-[1.02]">
-                Monica Eulalia<br>
-                Changanaque Cárcamo
+                Monica<br>
+                Changanaque
             </h2>
             <!-- Ornamento divisor inferior con corazón -->
             <svg viewBox="0 0 240 28" class="w-48 sm:w-56 mx-auto mt-1 text-[#880e3f]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -983,7 +983,7 @@
         function initShareButton() {
             const shareBtn = document.getElementById('shareInviteBtn');
             const shareText = encodeURIComponent(
-                '🎉 ¡Te invito a celebrar mi cumpleaños!\n\nMonica Eulalia Changanaque Cárcamo\n📅 Sábado 28 de Noviembre\n🕗 A partir de las 8:00 PM\n📍 Ubicación: https://maps.app.goo.gl/PMfRjdVwno2mpVjaA\n\n¡No faltes! 🩷'
+                '🎉 ¡Te invito a celebrar mi cumpleaños!\n\nMonica Changanaque\n📅 Sábado 28 de Noviembre\n🕗 A partir de las 8:00 PM\n📍 Ubicación: https://maps.app.goo.gl/PMfRjdVwno2mpVjaA\n\n¡No faltes! 🩷'
             );
             shareBtn.href = `https://wa.me/?text=${shareText}`;
         }
@@ -1030,12 +1030,12 @@
                 if (!name) return;
 
                 // Actualizar resumen visual
-                const summary = `Hemos registrado a <strong>${name}</strong> (${count}) para celebrar junto a Monica Eulalia el Sábado 28 de Noviembre a las 8:00 PM.`;
+                const summary = `Hemos registrado a <strong>${name}</strong> (${count}) para celebrar junto a Monica Changanaque el Sábado 28 de Noviembre a las 8:00 PM.`;
                 document.getElementById('rsvpSummaryText').innerHTML = summary;
 
                 // Enlace prellenado de WhatsApp para compartir confirmación si el invitado desea
                 const waText = encodeURIComponent(
-                    `¡Hola! Confirmo mi asistencia al cumpleaños de Monica Eulalia Changanaque Cárcamo (Sábado 28 de Noviembre - 8:00 PM).\n` +
+                    `¡Hola! Confirmo mi asistencia al cumpleaños de Monica Changanaque (Sábado 28 de Noviembre - 8:00 PM).\n` +
                     `👤 Nombre: ${name}\n` +
                     `👥 Asistentes: ${count}` +
                     (msg ? `\n💌 Mensaje: "${msg}"` : '')
